@@ -1,0 +1,1186 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #1f293a;
+}
+
+/* ====== أنماط تسجيل الدخول وإنشاء الحساب ====== */
+.container {
+    position: relative;
+    width: 256px;
+    height: 256px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(calc(min(1, 100vw / 480)));
+    transform-origin: center;
+}
+
+.container span {
+    position: absolute;
+    left: 0;
+    width: 32px;
+    height: 6px;
+    background: #2c4766;
+    border-radius: 8px;
+    transform-origin: 128px;
+    transform: scale(2.2) rotate(calc(var(--i) * (360deg / 50)));
+    animation: animateBlink 3s linear infinite;
+    animation-delay: calc(var(--i) * (3s / 50));
+}
+
+@keyframes animateBlink {
+    0%   { background: #0ef; }
+    25%  { background: #2c4766; }
+}
+
+.login-box {
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.login-box form {
+    width: 100%;
+    padding: 0 50px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #0ef;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.input-box {
+    position: relative;
+    margin: 25px 0;
+}
+
+.input-box input,
+.input-box select,
+.input-box textarea {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #2c4766;
+    outline: none;
+    border-radius: 40px;
+    font-size: 1em;
+    color: #fff;
+    padding: 0 20px;
+    transition: .5s ease;
+}
+
+.input-box textarea {
+    height: auto;
+    padding: 15px 20px;
+    border-radius: 16px;
+    resize: vertical;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-box select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.input-box select option {
+    background: #1f293a;
+    color: #fff;
+}
+
+.input-box input:focus,
+.input-box input:valid,
+.input-box select:focus,
+.input-box textarea:focus {
+    border-color: #0ef;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s ease;
+}
+
+.input-box textarea~label {
+    top: 20px;
+    transform: none;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label,
+.input-box select:focus~label,
+.input-box textarea:focus~label {
+    top: 1px;
+    font-size: .8em;
+    background: #1f293a;
+    padding: 0 6px;
+    color: #0ef;
+}
+
+.forgot-pass {
+    margin: -15px 0 10px;
+    text-align: center;
+}
+
+.forgot-pass a {
+    font-size: .85em;
+    color: #fff;
+    text-decoration: none;
+}
+
+.forgot-pass a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #0ef;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #1f293a;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #fff;
+    transform: scale(1.02);
+}
+
+.signup-link {
+    margin: 20px 0 10px;
+    text-align: center;
+}
+
+.signup-link a {
+    font-size: 1em;
+    color: #0ef;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* ====== أنماط الصفحة الرئيسية (Dashboard) ====== */
+body:not(:has(.container)) {
+    background: #1f293a;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ====== الشريط العلوي ====== */
+.dashboard-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #2c4766;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-icon {
+    color: #fff;
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+.nav-icon:hover {
+    background: rgba(0, 238, 255, 0.2);
+    transform: scale(1.1);
+    color: #0ef;
+}
+
+.nav-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0ef;
+    letter-spacing: 1px;
+    flex: 1;
+    text-align: center;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-greeting {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background: #0ef;
+    color: #1f293a;
+    padding: 8px 20px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+/* ====== المحتوى الرئيسي ====== */
+.dashboard-main {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+}
+
+.welcome-section {
+    margin-bottom: 40px;
+}
+
+.welcome-section h1 {
+    color: #0ef;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.welcome-text {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+/* ====== البطاقات ====== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.dashboard-card {
+    background: #2c4766;
+    padding: 30px 20px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    border-color: #0ef;
+    box-shadow: 0 10px 30px rgba(0, 238, 255, 0.15);
+}
+
+.dashboard-card .card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+}
+
+.dashboard-card h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.dashboard-card p {
+    color: #aab;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ====== الواجبات والمهام ====== */
+.tasks-section {
+    background: #2c4766;
+    padding: 30px 35px;
+    border-radius: 16px;
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid rgba(0, 238, 255, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+.tasks-section h2 {
+    color: #0ef;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.task-card-link {
+    text-decoration: none;
+}
+
+.task-card {
+    background: #1f293a;
+    padding: 20px 15px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.task-card:hover {
+    border-color: #0ef;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 238, 255, 0.1);
+}
+
+.task-icon {
+    display: block;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.task-name {
+    display: block;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.task-status {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    background: rgba(0, 238, 255, 0.1);
+    color: #0ef;
+}
+
+/* ====== تنسيق الملف الشخصي ====== */
+.profile-section {
+    background: #2c4766;
+    padding: 30px 35px;
+    border-radius: 16px;
+    max-width: 550px;
+    margin: 20px auto;
+    border: 1px solid rgba(0, 238, 255, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+.profile-section h2 {
+    color: #0ef;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1rem;
+    direction: ltr;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #aab;
+    min-width: 140px;
+    text-align: right;
+    font-size: 0.95rem;
+}
+
+.info-value {
+    color: #fff;
+    font-weight: 400;
+    text-align: left;
+    flex: 1;
+    padding-left: 15px;
+    font-size: 0.95rem;
+}
+
+/* ====== تنسيق الإعدادات ====== */
+.settings-section {
+    background: #2c4766;
+    padding: 30px 35px;
+    border-radius: 16px;
+    max-width: 550px;
+    margin: 20px auto;
+    border: 1px solid rgba(0, 238, 255, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+.settings-section h2 {
+    color: #0ef;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.settings-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1rem;
+}
+
+.setting-item label {
+    color: #e0e0e0;
+    font-weight: 500;
+    text-align: right;
+    flex: 1;
+}
+
+.setting-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #0ef;
+    cursor: pointer;
+}
+
+.setting-item select {
+    background: #1f293a;
+    color: #fff;
+    border: 1px solid #2c4766;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.setting-item select:focus {
+    outline: none;
+    border-color: #0ef;
+}
+
+/* ====== الإحصائيات ====== */
+.stats-section {
+    background: #2c4766;
+    padding: 30px 35px;
+    border-radius: 16px;
+    max-width: 700px;
+    margin: 20px auto;
+    border: 1px solid rgba(0, 238, 255, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+.stats-section h2 {
+    color: #0ef;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: #1f293a;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0ef;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    color: #aab;
+    font-size: 0.85rem;
+}
+
+/* ====== الرسائل ====== */
+.messages-section {
+    background: #2c4766;
+    padding: 30px 35px;
+    border-radius: 16px;
+    max-width: 700px;
+    margin: 20px auto;
+    border: 1px solid rgba(0, 238, 255, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+.messages-section h2 {
+    color: #0ef;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.message-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #1f293a;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.message-item:hover {
+    border-color: #0ef;
+    transform: translateX(5px);
+}
+
+.message-sender {
+    font-weight: 600;
+    color: #fff;
+    min-width: 100px;
+}
+
+.message-preview {
+    color: #aab;
+    flex: 1;
+}
+
+.message-time {
+    color: #666;
+    font-size: 0.8rem;
+    min-width: 100px;
+    text-align: left;
+}
+
+/* ====== الإشعارات ====== */
+.notifications-section {
+    background: #2c4766;
+    padding: 30px 35px;
+    border-radius: 16px;
+    max-width: 700px;
+    margin: 20px auto;
+    border: 1px solid rgba(0, 238, 255, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+.notifications-section h2 {
+    color: #0ef;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #1f293a;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.notification-item:hover {
+    border-color: #0ef;
+}
+
+.notification-item.unread {
+    border-right: 3px solid #0ef;
+}
+
+.notification-icon {
+    font-size: 1.2rem;
+}
+
+.notification-text {
+    color: #fff;
+    flex: 1;
+}
+
+.notification-time {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* ====== صفحات المهام ====== */
+.task-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-main {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.task-form-section,
+.task-list-section {
+    background: #2c4766;
+    padding: 30px 35px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(0, 238, 255, 0.1);
+}
+
+.task-form-section h2,
+.task-list-section h2 {
+    color: #0ef;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.task-form-section .input-box {
+    margin: 20px 0;
+}
+
+/* ====== تنسيق الحالة في الواجبات ====== */
+.task-item-status {
+    padding: 3px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-نشر {
+    background: rgba(0, 238, 255, 0.15);
+    color: #0ef;
+}
+
+.status-طباعة {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+}
+
+.status-أرشيف {
+    background: rgba(255, 255, 255, 0.1);
+    color: #888;
+}
+
+/* ====== تنسيق الكادر والتفاصيل ====== */
+.task-item {
+    background: #1f293a;
+    padding: 18px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.task-item:hover {
+    border-color: #0ef;
+    transform: translateX(5px);
+}
+
+.task-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.task-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.task-item-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.task-item-date {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.task-item-assigned {
+    color: #aab;
+    font-size: 0.85rem;
+}
+
+.task-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.task-item-created {
+    color: #555;
+    font-size: 0.75rem;
+}
+
+.delete-btn {
+    background: rgba(255, 0, 0, 0.15);
+    color: #ff4444;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: rgba(255, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.empty-message {
+    color: #666;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 1rem;
+}
+
+/* ====== أنميشن الظهور ====== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ====== تنسيق نموذج إضافة الواجب ====== */
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-row:last-of-type {
+    border-bottom: none;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    flex: 0 0 100%;
+}
+
+.form-group label {
+    color: #aab;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 45px;
+    background: #1f293a;
+    border: 2px solid #2c4766;
+    outline: none;
+    border-radius: 12px;
+    font-size: 1em;
+    color: #fff;
+    padding: 0 15px;
+    transition: .3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #0ef;
+}
+
+.form-group select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: #1f293a;
+    color: #fff;
+}
+
+.form-group input::placeholder {
+    color: #555;
+}
+
+/* ====== أزرار التعديل والحفظ ====== */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-edit {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 40px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #ffc107;
+    color: #1f293a;
+}
+
+.btn-edit:hover {
+    transform: scale(1.05);
+    background: #ffd54f;
+}
+
+.btn-save {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 40px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #0ef;
+    color: #1f293a;
+}
+
+.btn-save:hover {
+    transform: scale(1.05);
+    background: #4dd0e1;
+}
+
+/* ====== أزرار التعديل والحذف في القائمة ====== */
+.task-item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    background: rgba(255, 193, 7, 0.3);
+    transform: scale(1.05);
+}
+
+/* ====== تحسينات للشاشات الصغيرة ====== */
+@media (max-width: 600px) {
+    .dashboard-nav {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+    
+    .nav-left {
+        justify-content: center;
+    }
+    
+    .nav-brand {
+        order: -1;
+    }
+    
+    .nav-actions {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+    
+    .welcome-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    .tasks-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    
+    .profile-section,
+    .settings-section,
+    .stats-section,
+    .messages-section,
+    .notifications-section,
+    .task-form-section,
+    .task-list-section {
+        padding: 20px;
+        margin: 15px;
+        max-width: 100%;
+    }
+    
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+        padding: 12px 0;
+    }
+    
+    .info-label {
+        min-width: auto;
+        text-align: right;
+        width: 100%;
+        font-size: 0.85rem;
+    }
+    
+    .info-value {
+        padding-left: 0;
+        text-align: right;
+        width: 100%;
+        font-size: 0.95rem;
+    }
+    
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .setting-item label {
+        text-align: right;
+        width: 100%;
+    }
+    
+    .setting-item input[type="checkbox"],
+    .setting-item select {
+        align-self: flex-start;
+    }
+    
+    .message-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .message-preview {
+        width: 100%;
+    }
+    
+    .message-time {
+        width: 100%;
+        text-align: right;
+    }
+    
+    .notification-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .notification-text {
+        width: 100%;
+    }
+    
+    .notification-time {
+        width: 100%;
+        text-align: right;
+    }
+    
+    .task-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .task-item-body {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .task-item-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-edit,
+    .btn-save {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .task-item-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    
+    .edit-btn,
+    .delete-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        transform: scale(calc(min(0.7, 100vw / 480)));
+    }
+    
+    .nav-icon {
+        font-size: 1.3rem;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .login-box {
+        width: 320px;
+    }
+    
+    .login-box form {
+        padding: 0 25px;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tasks-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرئيسية - تطبيقي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- الشريط العلوي -->
+        <nav class="dashboard-nav">
+            <div class="nav-left">
+                <a href="#" class="nav-icon" title="الإعدادات" onclick="showSettings()">
+                    <span class="icon-settings">⚙️</span>
+                </a>
+                <a href="#" class="nav-icon" title="الملف الشخصي" onclick="showProfile()">
+                    <span class="icon-profile">👤</span>
+                </a>
+            </div>
+            <div class="nav-brand">🚀 تطبيقي</div>
+            <div class="nav-actions">
+                <span class="user-greeting" id="userGreeting">مرحباً، سجاد مهدي</span>
+                <a href="index.html" class="logout-btn" onclick="logout()">تسجيل خروج</a>
+            </div>
+        </nav>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="dashboard-main">
+            <div class="welcome-section">
+                <h1>مرحباً بك في تطبيقي! 🎉</h1>
+                <p class="welcome-text">اختر ما تريد فعله من البطاقات أدناه:</p>
+            </div>
+
+            <!-- البطاقات -->
+            <div class="cards-grid">
+                <div class="dashboard-card" onclick="showStats()">
+                    <div class="card-icon">📊</div>
+                    <h3>الإحصائيات</h3>
+                    <p>عرض تقارير وأرقامك</p>
+                </div>
+                <div class="dashboard-card" onclick="showMessages()">
+                    <div class="card-icon">💬</div>
+                    <h3>الرسائل</h3>
+                    <p>صندوق الوارد الخاص بك</p>
+                </div>
+                <div class="dashboard-card" onclick="showTasks()">
+                    <div class="card-icon">📋</div>
+                    <h3>الواجبات والمهام</h3>
+                    <p>إدارة مهامك وواجباتك</p>
+                </div>
+                <div class="dashboard-card" onclick="showNotifications()">
+                    <div class="card-icon">🔔</div>
+                    <h3>الإشعارات</h3>
+                    <p>عرض آخر التحديثات</p>
+                </div>
+            </div>
+
+            <!-- الواجبات والمهام -->
+            <div class="tasks-section" id="tasksSection" style="display: none;">
+                <h2>📋 الواجبات والمهام</h2>
+                <div class="tasks-grid">
+                    <a href="task-photography.html" class="task-card-link">
+                        <div class="task-card">
+                            <span class="task-icon">📸</span>
+                            <span class="task-name">تصوير</span>
+                            <span class="task-status">قيد التنفيذ</span>
+                        </div>
+                    </a>
+                    <a href="task-design.html" class="task-card-link">
+                        <div class="task-card">
+                            <span class="task-icon">🎨</span>
+                            <span class="task-name">تصميم</span>
+                            <span class="task-status">مكتمل</span>
+                        </div>
+                    </a>
+                    <a href="task-editing.html" class="task-card-link">
+                        <div class="task-card">
+                            <span class="task-icon">✂️</span>
+                            <span class="task-name">مونتاج</span>
+                            <span class="task-status">قيد المراجعة</span>
+                        </div>
+                    </a>
+                    <a href="task-writing.html" class="task-card-link">
+                        <div class="task-card">
+                            <span class="task-icon">📝</span>
+                            <span class="task-name">تحرير</span>
+                            <span class="task-status">معلق</span>
+                        </div>
+                    </a>
+                    <a href="task-publishing.html" class="task-card-link">
+                        <div class="task-card">
+                            <span class="task-icon">📱</span>
+                            <span class="task-name">ناشر إلكتروني</span>
+                            <span class="task-status">جديد</span>
+                        </div>
+                    </a>
+                    <a href="task-documentation.html" class="task-card-link">
+                        <div class="task-card">
+                            <span class="task-icon">📜</span>
+                            <span class="task-name">توثيق</span>
+                            <span class="task-status">قيد التنفيذ</span>
+                        </div>
+                    </a>
+                </div>
+                <button class="btn" onclick="hideTasks()">إغلاق الواجبات والمهام</button>
+            </div>
+
+            <!-- باقي الأقسام -->
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <h2>👤 الملف الشخصي</h2>
+                <div class="profile-info">
+                    <div class="info-row">
+                        <span class="info-label">الاسم الكامل :</span>
+                        <span class="info-value" id="profileName">سجاد مهدي</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">رقم الهاتف :</span>
+                        <span class="info-value" id="profilePhone">07735027352</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">تاريخ التسجيل :</span>
+                        <span class="info-value" id="profileDate">2026/8/16، 6:44:59 م</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">آخر تسجيل دخول :</span>
+                        <span class="info-value" id="profileLogin">2026/8/16، 6:53:10 م</span>
+                    </div>
+                </div>
+                <button class="btn" onclick="hideProfile()">إخفاء الملف الشخصي</button>
+            </div>
+
+            <div class="settings-section" id="settingsSection" style="display: none;">
+                <h2>⚙️ الإعدادات</h2>
+                <div class="settings-options">
+                    <div class="setting-item">
+                        <input type="checkbox" id="darkMode">
+                        <label>🌙 الوضع الليلي</label>
+                    </div>
+                    <div class="setting-item">
+                        <input type="checkbox" id="notifications" checked>
+                        <label>🔔 الإشعارات</label>
+                    </div>
+                    <div class="setting-item">
+                        <select id="language">
+                            <option value="ar">العربية</option>
+                            <option value="en">English</option>
+                        </select>
+                        <label>🌐 اللغة</label>
+                    </div>
+                </div>
+                <button class="btn" onclick="hideSettings()">إغلاق الإعدادات</button>
+            </div>
+
+            <div class="stats-section" id="statsSection" style="display: none;">
+                <h2>📊 الإحصائيات</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">1,247</span>
+                        <span class="stat-label">إجمالي المستخدمين</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">892</span>
+                        <span class="stat-label">المستخدمين النشطين</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">3,456</span>
+                        <span class="stat-label">إجمالي الرسائل</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">معدل الرضا</span>
+                    </div>
+                </div>
+                <button class="btn" onclick="hideStats()">إغلاق الإحصائيات</button>
+            </div>
+
+            <div class="messages-section" id="messagesSection" style="display: none;">
+                <h2>💬 الرسائل</h2>
+                <div class="messages-list">
+                    <div class="message-item">
+                        <span class="message-sender">أحمد محمد</span>
+                        <span class="message-preview">مرحباً، كيف يمكنني مساعدتك؟</span>
+                        <span class="message-time">اليوم، 3:45 م</span>
+                    </div>
+                    <div class="message-item">
+                        <span class="message-sender">سارة علي</span>
+                        <span class="message-preview">شكراً لك على المساعدة!</span>
+                        <span class="message-time">اليوم، 2:30 م</span>
+                    </div>
+                    <div class="message-item">
+                        <span class="message-sender">محمد حسن</span>
+                        <span class="message-preview">هل يمكنك مراجعة الملف المرفق؟</span>
+                        <span class="message-time">الأمس، 10:15 ص</span>
+                    </div>
+                    <div class="message-item">
+                        <span class="message-sender">نورا خالد</span>
+                        <span class="message-preview">تم تحديث البيانات بنجاح</span>
+                        <span class="message-time">الأمس، 9:00 ص</span>
+                    </div>
+                </div>
+                <button class="btn" onclick="hideMessages()">إغلاق الرسائل</button>
+            </div>
+
+            <div class="notifications-section" id="notificationsSection" style="display: none;">
+                <h2>🔔 الإشعارات</h2>
+                <div class="notifications-list">
+                    <div class="notification-item unread">
+                        <span class="notification-icon">🔵</span>
+                        <span class="notification-text">تم تحديث التطبيق إلى الإصدار 2.0</span>
+                        <span class="notification-time">منذ 5 دقائق</span>
+                    </div>
+                    <div class="notification-item unread">
+                        <span class="notification-icon">🔵</span>
+                        <span class="notification-text">لديك رسالة جديدة من أحمد</span>
+                        <span class="notification-time">منذ 30 دقيقة</span>
+                    </div>
+                    <div class="notification-item">
+                        <span class="notification-icon">⚪</span>
+                        <span class="notification-text">تم حفظ تغييراتك بنجاح</span>
+                        <span class="notification-time">منذ ساعتين</span>
+                    </div>
+                    <div class="notification-item">
+                        <span class="notification-icon">⚪</span>
+                        <span class="notification-text">مرحباً بك في التطبيق!</span>
+                        <span class="notification-time">منذ يوم</span>
+                    </div>
+                </div>
+                <button class="btn" onclick="hideNotifications()">إغلاق الإشعارات</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const userName = localStorage.getItem('userName') || 'سجاد مهدي';
+            const userPhone = localStorage.getItem('userPhone') || '07735027352';
+            const signupDate = localStorage.getItem('signupDate') || new Date().toLocaleString('ar-EG');
+            const loginTime = localStorage.getItem('loginTime') || new Date().toLocaleString('ar-EG');
+            
+            document.getElementById('userGreeting').textContent = `مرحباً، ${userName}`;
+            document.getElementById('profileName').textContent = userName;
+            document.getElementById('profilePhone').textContent = userPhone;
+            document.getElementById('profileDate').textContent = signupDate;
+            document.getElementById('profileLogin').textContent = loginTime;
+        };
+
+        function showProfile() {
+            document.getElementById('profileSection').style.display = 'block';
+            document.getElementById('settingsSection').style.display = 'none';
+            document.getElementById('statsSection').style.display = 'none';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.getElementById('tasksSection').style.display = 'none';
+            document.getElementById('notificationsSection').style.display = 'none';
+        }
+
+        function hideProfile() {
+            document.getElementById('profileSection').style.display = 'none';
+        }
+
+        function showSettings() {
+            document.getElementById('settingsSection').style.display = 'block';
+            document.getElementById('profileSection').style.display = 'none';
+            document.getElementById('statsSection').style.display = 'none';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.getElementById('tasksSection').style.display = 'none';
+            document.getElementById('notificationsSection').style.display = 'none';
+        }
+
+        function hideSettings() {
+            document.getElementById('settingsSection').style.display = 'none';
+        }
+
+        function showStats() {
+            document.getElementById('statsSection').style.display = 'block';
+            document.getElementById('profileSection').style.display = 'none';
+            document.getElementById('settingsSection').style.display = 'none';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.getElementById('tasksSection').style.display = 'none';
+            document.getElementById('notificationsSection').style.display = 'none';
+        }
+
+        function hideStats() {
+            document.getElementById('statsSection').style.display = 'none';
+        }
+
+        function showMessages() {
+            document.getElementById('messagesSection').style.display = 'block';
+            document.getElementById('profileSection').style.display = 'none';
+            document.getElementById('settingsSection').style.display = 'none';
+            document.getElementById('statsSection').style.display = 'none';
+            document.getElementById('tasksSection').style.display = 'none';
+            document.getElementById('notificationsSection').style.display = 'none';
+        }
+
+        function hideMessages() {
+            document.getElementById('messagesSection').style.display = 'none';
+        }
+
+        function showTasks() {
+            document.getElementById('tasksSection').style.display = 'block';
+            document.getElementById('profileSection').style.display = 'none';
+            document.getElementById('settingsSection').style.display = 'none';
+            document.getElementById('statsSection').style.display = 'none';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.getElementById('notificationsSection').style.display = 'none';
+        }
+
+        function hideTasks() {
+            document.getElementById('tasksSection').style.display = 'none';
+        }
+
+        function showNotifications() {
+            document.getElementById('notificationsSection').style.display = 'block';
+            document.getElementById('profileSection').style.display = 'none';
+            document.getElementById('settingsSection').style.display = 'none';
+            document.getElementById('statsSection').style.display = 'none';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.getElementById('tasksSection').style.display = 'none';
+        }
+
+        function hideNotifications() {
+            document.getElementById('notificationsSection').style.display = 'none';
+        }
+
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب - تطبيقي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2>إنشاء حساب</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="input-box">
+                    <input type="text" id="signupName" required>
+                    <label>الاسم الكامل</label>
+                </div>
+                <div class="input-box">
+                    <input type="tel" id="signupPhone" required>
+                    <label>رقم الهاتف</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="signupPassword" required minlength="4">
+                    <label>كلمة المرور (4 أحرف على الأقل)</label>
+                </div>
+                <button type="submit" class="btn">إنشاء حساب</button>
+                <div id="signupMessage" style="margin-top: 10px; font-size: 0.9rem;"></div>
+                <div class="signup-link">
+                    <a href="index.html">لديك حساب؟ تسجيل الدخول</a>
+                </div>
+            </form>
+        </div>
+
+        <span style="--i:0;"></span><span style="--i:1;"></span><span style="--i:2;"></span>
+        <span style="--i:3;"></span><span style="--i:4;"></span><span style="--i:5;"></span>
+        <span style="--i:6;"></span><span style="--i:7;"></span><span style="--i:8;"></span>
+        <span style="--i:9;"></span><span style="--i:10;"></span><span style="--i:11;"></span>
+        <span style="--i:12;"></span><span style="--i:13;"></span><span style="--i:14;"></span>
+        <span style="--i:15;"></span><span style="--i:16;"></span><span style="--i:17;"></span>
+        <span style="--i:18;"></span><span style="--i:19;"></span><span style="--i:20;"></span>
+        <span style="--i:21;"></span><span style="--i:22;"></span><span style="--i:23;"></span>
+        <span style="--i:24;"></span><span style="--i:25;"></span><span style="--i:26;"></span>
+        <span style="--i:27;"></span><span style="--i:28;"></span><span style="--i:29;"></span>
+        <span style="--i:30;"></span><span style="--i:31;"></span><span style="--i:32;"></span>
+        <span style="--i:33;"></span><span style="--i:34;"></span><span style="--i:35;"></span>
+        <span style="--i:36;"></span><span style="--i:37;"></span><span style="--i:38;"></span>
+        <span style="--i:39;"></span><span style="--i:40;"></span><span style="--i:41;"></span>
+        <span style="--i:42;"></span><span style="--i:43;"></span><span style="--i:44;"></span>
+        <span style="--i:45;"></span><span style="--i:46;"></span><span style="--i:47;"></span>
+        <span style="--i:48;"></span><span style="--i:49;"></span>
+    </div>
+
+    <script>
+        function handleSignup(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('signupName').value.trim();
+            const phone = document.getElementById('signupPhone').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+            const messageDiv = document.getElementById('signupMessage');
+            
+            if (localStorage.getItem('userName')) {
+                messageDiv.style.color = '#ff6b6b';
+                messageDiv.textContent = '❌ يوجد حساب مسجل بالفعل. يرجى تسجيل الدخول.';
+                return;
+            }
+            
+            if (name.length < 3) {
+                messageDiv.style.color = '#ff6b6b';
+                messageDiv.textContent = '❌ الاسم يجب أن يكون 3 أحرف على الأقل.';
+                return;
+            }
+            
+            if (phone.length < 10) {
+                messageDiv.style.color = '#ff6b6b';
+                messageDiv.textContent = '❌ رقم الهاتف يجب أن يكون 10 أرقام على الأقل.';
+                return;
+            }
+            
+            if (password.length < 4) {
+                messageDiv.style.color = '#ff6b6b';
+                messageDiv.textContent = '❌ كلمة المرور يجب أن تكون 4 أحرف على الأقل.';
+                return;
+            }
+            
+            localStorage.setItem('userName', name);
+            localStorage.setItem('userPhone', phone);
+            localStorage.setItem('userPassword', password);
+            localStorage.setItem('signupDate', new Date().toLocaleString('ar-EG'));
+            localStorage.removeItem('userEmail');
+            
+            messageDiv.style.color = '#0ef';
+            messageDiv.textContent = '✅ تم إنشاء الحساب بنجاح! سيتم توجيهك لتسجيل الدخول...';
+            
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصميم - إضافة واجب</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="task-container">
+        <nav class="dashboard-nav">
+            <div class="nav-left">
+                <a href="home.html" class="nav-icon" title="العودة للرئيسية">
+                    <span class="icon-settings">🏠</span>
+                </a>
+            </div>
+            <div class="nav-brand">🎨 تصميم</div>
+            <div class="nav-actions">
+                <span class="user-greeting">إضافة واجب جديد</span>
+                <a href="home.html" class="logout-btn">رجوع</a>
+            </div>
+        </nav>
+
+        <main class="task-main">
+            <div class="task-form-section">
+                <h2>➕ إضافة واجب جديد</h2>
+                <form id="taskForm" onsubmit="addTask(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>عنوان الواجب</label>
+                            <input type="text" id="taskTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label>الحالة</label>
+                            <select id="taskStatus" required>
+                                <option value="نشر">نشر</option>
+                                <option value="طباعة">طباعة</option>
+                                <option value="أرشيف">أرشيف</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label>تاريخ الواجب</label>
+                            <input type="date" id="taskDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label>الكوادر المكلفة بالواجب</label>
+                            <input type="text" id="taskAssigned" required placeholder="أدخل أسماء الكوادر مفصولة بفاصلة">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-edit" onclick="enableEdit()">✏️ تعديل</button>
+                        <button type="submit" class="btn-save">💾 حفظ</button>
+                    </div>
+                </form>
+                <div id="taskMessage" style="margin-top: 10px; font-size: 0.9rem;"></div>
+            </div>
+
+            <div class="task-list-section">
+                <h2>📋 قائمة الواجبات</h2>
+                <div id="taskList" class="task-list"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let editingIndex = -1;
+
+        window.onload = function() {
+            loadTasks();
+        };
+
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('designTasks') || '[]');
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = '';
+            
+            if (tasks.length === 0) {
+                taskList.innerHTML = '<p class="empty-message">📭 لا توجد واجبات مضافة حالياً</p>';
+                return;
+            }
+            
+            tasks.forEach((task, index) => {
+                const taskItem = document.createElement('div');
+                taskItem.className = 'task-item';
+                taskItem.innerHTML = `
+                    <div class="task-item-header">
+                        <span class="task-item-title">${task.title}</span>
+                        <span class="task-item-status status-${task.status}">${task.status}</span>
+                    </div>
+                    <div class="task-item-body">
+                        <span class="task-item-date">📅 ${task.date}</span>
+                        <span class="task-item-assigned">👤 ${task.assigned}</span>
+                    </div>
+                    <div class="task-item-footer">
+                        <span class="task-item-created">🕐 ${task.createdAt}</span>
+                        <div class="task-item-actions">
+                            <button class="edit-btn" onclick="editTask(${index})">✏️ تعديل</button>
+                            <button class="delete-btn" onclick="deleteTask(${index})">🗑️ حذف</button>
+                        </div>
+                    </div>
+                `;
+                taskList.appendChild(taskItem);
+            });
+        }
+
+        function addTask(event) {
+            event.preventDefault();
+            
+            const title = document.getElementById('taskTitle').value.trim();
+            const status = document.getElementById('taskStatus').value;
+            const date = document.getElementById('taskDate').value;
+            const assigned = document.getElementById('taskAssigned').value.trim();
+            const messageDiv = document.getElementById('taskMessage');
+            
+            if (!title || !date || !assigned) {
+                messageDiv.style.color = '#ff6b6b';
+                messageDiv.textContent = '❌ يرجى ملء جميع الحقول';
+                return;
+            }
+            
+            let tasks = JSON.parse(localStorage.getItem('designTasks') || '[]');
+            
+            if (editingIndex >= 0) {
+                tasks[editingIndex] = {
+                    title: title,
+                    status: status,
+                    date: date,
+                    assigned: assigned,
+                    createdAt: tasks[editingIndex].createdAt,
+                    updatedAt: new Date().toLocaleString('ar-EG')
+                };
+                messageDiv.style.color = '#ffc107';
+                messageDiv.textContent = '✅ تم تعديل الواجب بنجاح!';
+                editingIndex = -1;
+            } else {
+                tasks.push({
+                    title: title,
+                    status: status,
+                    date: date,
+                    assigned: assigned,
+                    createdAt: new Date().toLocaleString('ar-EG')
+                });
+                messageDiv.style.color = '#0ef';
+                messageDiv.textContent = '✅ تم إضافة الواجب بنجاح!';
+            }
+            
+            localStorage.setItem('designTasks', JSON.stringify(tasks));
+            loadTasks();
+            document.getElementById('taskForm').reset();
+            document.querySelector('.btn-save').textContent = '💾 حفظ';
+            
+            setTimeout(() => {
+                messageDiv.textContent = '';
+            }, 3000);
+        }
+
+        function editTask(index) {
+            const tasks = JSON.parse(localStorage.getItem('designTasks') || '[]');
+            const task = tasks[index];
+            
+            document.getElementById('taskTitle').value = task.title;
+            document.getElementById('taskStatus').value = task.status;
+            document.getElementById('taskDate').value = task.date;
+            document.getElementById('taskAssigned').value = task.assigned;
+            
+            editingIndex = index;
+            document.querySelector('.btn-save').textContent = '🔄 تحديث';
+            document.querySelector('.task-form-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function enableEdit() {
+            document.getElementById('taskTitle').focus();
+            document.querySelector('.btn-save').textContent = '💾 حفظ';
+            editingIndex = -1;
+        }
+
+        function deleteTask(index) {
+            if (confirm('هل أنت متأكد من حذف هذا الواجب؟')) {
+                const tasks = JSON.parse(localStorage.getItem('designTasks') || '[]');
+                tasks.splice(index, 1);
+                localStorage.setItem('designTasks', JSON.stringify(tasks));
+                loadTasks();
+            }
+        }
+    </script>
+</body>
+</html>
